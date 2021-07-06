@@ -2,12 +2,12 @@ import React, { Fragment, useState } from "react";
 
 const useMoneda = (label, stateInicial, opciones) => {
    // State de nuestro custom hook
-   const [state, actualizarState] = useState(stateInicial);
+   const [moneda, setMoneda] = useState(stateInicial);
 
-   const Seleccionar = () => (
+   const SelectMoneda = () => (
       <Fragment>
          <label>{label}</label>
-         <select>
+         <select onChange={(e) => setMoneda(e.target.value)} value={moneda}>
             <option value="">- Seleccione -</option>
             {opciones.map((opcion) => (
                <option key={opcion.codigo} value={opcion.codigo}>
@@ -19,7 +19,7 @@ const useMoneda = (label, stateInicial, opciones) => {
    );
 
    // Retornar state, interfaz y fn que modifica el state
-   return [state, Seleccionar, actualizarState];
+   return [moneda, SelectMoneda, setMoneda];
 };
 
 export default useMoneda;
